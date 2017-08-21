@@ -1,18 +1,25 @@
-# vue-github-blog
+### 简介
 
-> A blog based on Vue & GitHub Api
+基于Vue与Github Api展示blog库中issues的博客。
 
-## Build Setup
+### 构建
 
-``` bash
-# install dependencies
+```Bash
+# 安装依赖包
 npm install
 
-# serve with hot reload at localhost:8080
+# 调式 http://localhost:8080
 npm run dev
 
-# build for production with minification
+# 发布
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### 参考
+
+设计样式参考[http://ukn.me/](http://ukn.me/)
+
+### 进阶
+
+- 添加分页功能
+- 添加[NProgress](https://github.com/rstacruz/nprogress)
