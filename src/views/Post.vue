@@ -39,11 +39,10 @@
       loadPost () {
         api.getDetail(this.$route.params.hash)
           .then(content => {
-            // Parse front-matter
             this.content = content.body
             this.title = content.title
             this.date = content.updated_at
-            // Set window title
+
             window.document.title = `${this.title} - PLdaily`
           })
           .catch(err => {
@@ -54,13 +53,11 @@
 
       newTab () {
         Vue.nextTick(function () {
-          // Load the external link into new tab
           const linksArray = [...document.querySelectorAll('a')]
           const currentHost = window.location.host
           linksArray.forEach(el => {
             if (el.href && el.host !== currentHost) {
               el.target = '_blank'
-              // https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/
               el.rel = 'noopener noreferrer'
             }
           })

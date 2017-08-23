@@ -32,7 +32,6 @@
         if (this.$route) {
           keyword = (this.$route.query.q || '').toLowerCase()
         }
-        // Filter by title, Order by publish date, desccon
         return this.lists
           .filter(item => (item.title.toLowerCase().indexOf(keyword) !== -1))
           .sort((itemA, itemB) => (new Date(itemB.date) - new Date(itemA.date)))
