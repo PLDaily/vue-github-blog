@@ -21,5 +21,4 @@ npm run build
 
 ### 进阶
 
-- [ ] 首页下拉加载
 - [x] 添加[NProgress](https://github.com/rstacruz/nprogress)

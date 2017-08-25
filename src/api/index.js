@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 function getListUrl (page) {
-  let url = `https://api.github.com/repos/pldaily/blog/issues?page=${page}&per_page=10`
+  page = page || 1
+  let url = `https://api.github.com/repos/pldaily/blog/issues?page=${page}&per_page=100`
   return url
 }
 

@@ -1,6 +1,8 @@
 var path = require('path')
 var webpack = require('webpack')
 
+
+
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -20,8 +22,8 @@ module.exports = {
             formatter: require('eslint-friendly-formatter')//编译后错误报告格式，可以让eslint的错误信息出现在终端上
            }
         }],
-        include: [resolve('src')] //使用ESLint的文件目录
-      }
+        include: path.resolve(__dirname, './dist') //使用ESLint的文件目录
+      },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
