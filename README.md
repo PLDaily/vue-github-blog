@@ -21,5 +21,5 @@ npm run build
 
 ### 进阶
 
-- 添加分页功能
-- 添加[NProgress](https://github.com/rstacruz/nprogress)
+- [ ] 首页下拉加载
+- [x] 添加[NProgress](https://github.com/rstacruz/nprogress

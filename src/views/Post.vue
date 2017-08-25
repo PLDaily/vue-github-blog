@@ -10,7 +10,6 @@
 </template>
 
 <script>
-  import Vue from 'vue'
   import api from '../api'
   import marked from '../utils/render.js'
   import NProgress from 'nprogress'
