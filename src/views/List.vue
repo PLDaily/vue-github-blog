@@ -63,17 +63,17 @@
     beforeRouteEnter (to, from, next) {
       NProgress.start()
       api.getList()
-          .then(lists => {
-            next(vm => {
-              NProgress.done()
-              vm.lists = lists
-              vm.loading = false
-            })
+        .then(lists => {
+          next(vm => {
+            NProgress.done()
+            vm.lists = lists
+            vm.loading = false
           })
-          .catch(err => {
-            console.log(err)
-            next(false)
-          })
+        })
+        .catch(err => {
+          console.log(err)
+          next(false)
+        })
     },
 
     watch: {

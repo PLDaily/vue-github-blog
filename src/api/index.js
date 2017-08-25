@@ -1,14 +1,13 @@
 import axios from 'axios'
 
-
 function getListUrl (page) {
-  let url = `https://api.github.com/repos/pldaily/blog/issues?page=${page}&per_page=10`;
-  return url;
+  let url = `https://api.github.com/repos/pldaily/blog/issues?page=${page}&per_page=10`
+  return url
 }
 
 function getPostUrl (id) {
   let url = `https://api.github.com/repos/pldaily/blog/issues/${id}`
-  return  url;
+  return url
 }
 
 const Cache = {

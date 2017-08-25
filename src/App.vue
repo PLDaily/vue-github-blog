@@ -21,7 +21,7 @@
 
     data () {
       return {
-        title: "PLdaily"
+        title: 'PLdaily'
       }
     },
 

@@ -34,19 +34,19 @@
     beforeRouteEnter (to, from, next) {
       NProgress.start()
       api.getDetail(to.params.hash)
-          .then(content => {
-            next(vm => {
-              NProgress.done()
-              vm.content = content.body
-              vm.title = content.title
-              vm.date = content.updated_at
-              window.document.title = `${vm.title} - PLdaily`
-            })
+        .then(content => {
+          next(vm => {
+            NProgress.done()
+            vm.content = content.body
+            vm.title = content.title
+            vm.date = content.updated_at
+            window.document.title = `${vm.title} - PLdaily`
           })
-          .catch(err => {
-            console.log(err)
-            next(false)
-          })
+        })
+        .catch(err => {
+          console.log(err)
+          next(false)
+        })
     }
   }
 </script>
