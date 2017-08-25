@@ -13,6 +13,7 @@
   import Vue from 'vue'
   import api from '../api'
   import marked from '../utils/render.js'
+  import NProgress from 'nprogress'
 
   export default {
     name: 'postView',
@@ -31,44 +32,22 @@
       }
     },
 
-    created () {
-      setTimeout(() => {
-        this.loadPost()
-      }, 5000)
-    },
-
-    methods: {
-      loadPost () {
-        api.getDetail(this.$route.params.hash)
+    beforeRouteEnter (to, from, next) {
+      NProgress.start()
+      api.getDetail(to.params.hash)
           .then(content => {
-            this.content = content.body
-            this.title = content.title
-            this.date = content.updated_at
-
-            window.document.title = `${this.title} - PLdaily`
+            next(vm => {
+              NProgress.done()
+              vm.content = content.body
+              vm.title = content.title
+              vm.date = content.updated_at
+              window.document.title = `${vm.title} - PLdaily`
+            })
           })
           .catch(err => {
-            console.error(err)
-            this.$router.replace('/')
+            console.log(err)
+            next(false)
           })
-      },
-
-      newTab () {
-        Vue.nextTick(function () {
-          const linksArray = [...document.querySelectorAll('a')]
-          const currentHost = window.location.host
-          linksArray.forEach(el => {
-            if (el.href && el.host !== currentHost) {
-              el.target = '_blank'
-              el.rel = 'noopener noreferrer'
-            }
-          })
-        })
-      }
-    },
-
-    watch: {
-      'htmlFromMarkdown': 'newTab'
     }
   }
 </script>

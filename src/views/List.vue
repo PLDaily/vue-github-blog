@@ -16,6 +16,7 @@
 
 <script>
   import api from '../api'
+  import NProgress from 'nprogress'
 
   export default {
     name: 'listView',
@@ -39,13 +40,14 @@
     },
 
     created () {
-      this.loadList()
+      this.loading = true
+      window.document.title = 'PLDaily'
     },
 
     methods: {
       loadList () {
         this.loading = true
-        window.document.title = 'PLDaily'
+        this.lists = []
         api.getList()
           .then(lists => {
             this.loading = false
@@ -56,6 +58,22 @@
             console.error(err)
           })
       }
+    },
+
+    beforeRouteEnter (to, from, next) {
+      NProgress.start()
+      api.getList()
+          .then(lists => {
+            next(vm => {
+              NProgress.done()
+              vm.lists = lists
+              vm.loading = false
+            })
+          })
+          .catch(err => {
+            console.log(err)
+            next(false)
+          })
     },
 
     watch: {
