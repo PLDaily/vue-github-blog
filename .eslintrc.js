@@ -9,6 +9,6 @@ module.exports = {
     'html'
   ],
   rules: {
-    indent: ["error", 2],
+    'camelcase': 0
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <section class="list-view">
-    <div class="loading" v-if="loading">loading..</div>
-    <div class="no-content" v-else-if="filteredList.length === 0">nothing..</div>
+    <div class="loading" v-show="loading">loading..</div>
+    <div class="no-content" v-if="!loading && filteredList.length === 0">nothing..</div>
     <ol v-else class="list">
       <li v-for="{ title, date, id } in filteredList" class="list-item">
         <router-link :to="'/post/' + id" class="item-title">
@@ -40,45 +40,25 @@
     },
 
     created () {
-      this.loading = true
       window.document.title = 'PLDaily'
     },
 
+    mounted () {
+      this.loadList()
+    },
+
     methods: {
-      loadList () {
-        this.loading = true
-        this.lists = []
-        api.getList()
-          .then(lists => {
-            this.loading = false
-            this.lists = lists
-          })
-          .catch(err => {
-            this.loading = false
-            console.error(err)
-          })
+      async loadList () {
+        NProgress.start()
+        try {
+          this.lists = await api.getList()
+          this.loading = false
+          NProgress.done()
+        } catch (err) {
+          this.loading = false
+          console.error(err)
+        }
       }
-    },
-
-    beforeRouteEnter (to, from, next) {
-      NProgress.start()
-      api.getList()
-        .then(lists => {
-          next(vm => {
-            NProgress.done()
-            vm.lists = lists
-            vm.loading = false
-          })
-        })
-        .catch(err => {
-          console.log(err)
-          next(false)
-        })
-    },
-
-    watch: {
-      '$route': 'loadList'
     }
-
   }
 </script>

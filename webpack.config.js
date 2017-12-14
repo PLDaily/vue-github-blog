@@ -1,8 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
 
-
-
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -18,11 +16,11 @@ module.exports = {
         use: [{
           loader: 'eslint-loader',
           options: {
-            fix: true,//自动修复
-            formatter: require('eslint-friendly-formatter')//编译后错误报告格式，可以让eslint的错误信息出现在终端上
+            fix: true,
+            formatter: require('eslint-friendly-formatter')
            }
         }],
-        include: path.resolve(__dirname, './dist') //使用ESLint的文件目录
+        include: path.resolve(__dirname, './dist')
       },
       {
         test: /\.vue$/,
@@ -31,7 +29,6 @@ module.exports = {
           loaders: {
             'stylus': 'vue-style-loader!style-loader!css-loader!stylus-loader',
           }
-          // other vue-loader options go here
         }
       },
       {
@@ -65,7 +62,6 @@ module.exports = {
 
 if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map'
-  // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
